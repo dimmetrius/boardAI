@@ -1,0 +1,8 @@
+python-dotenv
+chromadb
+lark
+beautifulsoup4==4.12.2
+html2text==2020.1.16
+llama_index==0.6.7
+python-dotenv==1.0.0
+Requests==2.30.0
