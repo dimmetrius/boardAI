@@ -1,0 +1,87 @@
+openapi: 3.0.1
+info:
+  title: School Menu Plugin
+  description: A plugin that allows the user analize School Menu using ChatGPT. If you do not know the the school's name, ask them first before making queries to the plugin. Otherwise, use the schoolname "Orion" You should apply date parameter in YYYY-MM-DD format. You will you getCurrentDate operation if you need current date 
+  version: 'v1'
+servers:
+  - url: http://localhost:5003
+paths:
+  /curdate:
+    get:
+      operationId: getCurrentDate
+      summary: Get current date
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getCurrentDateResponse'
+  /menu/{schoolname}/{date}:
+    get:
+      operationId: getMenu
+      summary: Get the menu
+      parameters:
+      - in: path
+        name: schoolname
+        schema:
+            type: string
+        required: true
+        description: The name of the school.
+      - in: path
+        name: date
+        schema:
+            type: string
+        required: true
+        description: Menu date in format YYYY-MM-DD.
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getMenuResponse'
+
+components:
+  schemas:
+    getCurrentDateResponse:
+      type: object
+      properties:
+        date: 
+          type: string
+          required: true
+          description: Cuttent Date in format YYYY-MM-DD.
+    getMenuResponse:
+      type: object
+      properties:
+        title: 
+          type: string
+          required: true
+          description: Menu title.
+        menu_days: 
+          type: array
+          description: Menu items.
+          items: 
+            type: object
+            properties: 
+              date: 
+                type: string
+                format: date
+                description: Menu date.
+              items: 
+                type: array
+                description: One date Menu items.
+                items: 
+                  type: object
+                  description: Menu item.
+                  properties: 
+                    category: 
+                      type: string
+                      description: Menu item category.
+                    name: 
+                      type: string
+                      description: Menu item name.
+                    weight: 
+                      type: integer
+                      format: int32
+                      description: Menu item weight.

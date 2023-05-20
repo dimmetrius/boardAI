@@ -5,6 +5,7 @@ from langchain.vectorstores import Chroma
 from langchain.schema import Document
 import json
 import os
+from llama_index import GPTVectorStoreIndex
 
 load_dotenv()
 
