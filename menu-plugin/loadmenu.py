@@ -1,8 +1,9 @@
+from typing import Any
 import requests
 import json
 
 
-def load_menu():
+def load_menu() -> dict[str, Any]:
     s = requests.Session()
 
     htmlHeaders = {
@@ -24,10 +25,12 @@ def load_menu():
         headers=htmlHeaders,
     )
 
-    cookies_dict = r.cookies.get_dict()
-    XSRF_TOKEN = cookies_dict["XSRF-TOKEN"]
+    cookies = r.cookies
+    cookies_dict: dict[str, str] = cookies.get_dict(domain=None, path=None)
 
-    jsonHeaders = {
+    XSRF_TOKEN: str = cookies_dict["XSRF-TOKEN"]
+
+    jsonHeaders: dict[str, str] = {
         "accept": "application/json, text/plain, */*",
         "accept-language": "en-US,en;q=0.9",
         "content-type": "application/json",
@@ -49,14 +52,17 @@ def load_menu():
 
     json_dict = json.loads(response.text)
     menu_month_calendar = json_dict["data"]["menu_month_calendar"]
-    res_obj = {"title": json_dict["data"]["menu_info"]["menu_title"], "menu_days": []}
+    res_obj: dict[str, Any] = {
+        "title": json_dict["data"]["menu_info"]["menu_title"],
+        "menu_days": [],
+    }
 
     for menu in menu_month_calendar:
         date = menu["day"]
         setting = json.loads(menu["setting"])
         items = setting["current_display"]
         category = ""
-        my_items = []
+        my_items: list[Any] = []
         for item in items:
             if item["type"] == "category":
                 category_name = item["name"]

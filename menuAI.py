@@ -2,7 +2,6 @@ from langchain.chat_models import ChatOpenAI
 from langchain.agents import load_tools, initialize_agent
 from langchain.agents import AgentType
 from langchain.tools import AIPluginTool
-from langchain.memory import SimpleMemory
 from datetime import date
 from dotenv import load_dotenv
 
@@ -11,7 +10,7 @@ load_dotenv()
 
 tool = AIPluginTool.from_plugin_url("http://0.0.0.0:5003/.well-known/ai-plugin.json")
 
-llm = ChatOpenAI(temperature=0.7)
+llm = ChatOpenAI(temperature=0.7, client=None)
 tools = load_tools(["requests_all"])
 tools += [tool]
 
