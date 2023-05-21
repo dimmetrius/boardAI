@@ -5,7 +5,7 @@ import quart_cors
 from loadmenu import load_menu
 
 
-app = quart_cors.cors(quart.Quart(__name__), allow_origin="https://chat.openai.com")
+app = quart_cors.cors(quart.Quart(__name__), allow_origin="https://chat.openai.com")  # type: ignore
 
 
 @app.get("/menu/<string:schoolname>/<string:date>")
@@ -20,7 +20,7 @@ async def get_menus(schoolname: str, date: str):
 @app.get("/logo.png")
 async def plugin_logo():
     filename = "logo.png"
-    return await quart.send_file(filename, mimetype="image/png")
+    return await quart.send_file(filename, mimetype="image/png")  # type: ignore
 
 
 @app.get("/.well-known/ai-plugin.json")

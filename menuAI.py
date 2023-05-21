@@ -1,5 +1,5 @@
 from langchain.chat_models import ChatOpenAI
-from langchain.agents import load_tools, initialize_agent
+from langchain.agents import load_tools, initialize_agent  # type: ignore
 from langchain.agents import AgentType
 from langchain.tools import AIPluginTool
 from datetime import date

@@ -26,9 +26,8 @@ def load_menu() -> dict[str, Any]:
     )
 
     cookies = r.cookies
-    cookies_dict: dict[str, str] = cookies.get_dict(domain=None, path=None)
-
-    XSRF_TOKEN: str = cookies_dict["XSRF-TOKEN"]
+    cookies_dict: dict[str, str] = cookies.get_dict(domain=None, path=None)  # type: ignore
+    XSRF_TOKEN: str = cookies_dict["XSRF-TOKEN"]  # type: ignore
 
     jsonHeaders: dict[str, str] = {
         "accept": "application/json, text/plain, */*",

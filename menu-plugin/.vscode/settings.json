@@ -1,7 +1,8 @@
 {
     "python.analysis.typeCheckingMode": "strict",
     "python.analysis.diagnosticSeverityOverrides": {
-        "reportUnknownVariableType": "warning",
-        "reportUnknownMemberType": "warning"
+        "reportUnboundVariable" : "information",
+        "reportImplicitStringConcatenation" : "warning",
+        "reportUnknownMemberType": "warning",
     }
 }
