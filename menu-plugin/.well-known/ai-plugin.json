@@ -3,7 +3,7 @@
     "name_for_human": "School Menu Plugin",
     "name_for_model": "schoolmenuplugin",
     "description_for_human": "A plugin that allows the user analize School Menu using ChatGPT.",
-    "description_for_model": "Assistant uses the School Menu plugin to get relevant School Menu data.A plugin that allows the user analize School Menu using ChatGPT. A plugin that allows the user analize School Menu using ChatGPT. If you do not know the the school's name, ask them first before making queries to the plugin. Otherwise, use the schoolname \"Orion\" You should apply date parameter in YYYY-MM-DD format.",
+    "description_for_model": "Assistant uses the School Menu plugin to get relevant School Menu data. If you do not know the the school's name, ask them first before making queries to the plugin. Otherwise, use the schoolname \"Orion\" You should apply date parameter in YYYY-MM-DD format.",
     "auth": {
       "type": "none"
     },

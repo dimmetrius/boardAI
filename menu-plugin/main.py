@@ -4,6 +4,7 @@ import quart
 import quart_cors
 from datetime import date
 from quart import request
+from loadmenu import load_menu
 
 app = quart_cors.cors(quart.Quart(__name__), allow_origin="https://chat.openai.com")
 
@@ -11,15 +12,9 @@ app = quart_cors.cors(quart.Quart(__name__), allow_origin="https://chat.openai.c
 @app.get("/menu/<string:schoolname>/<string:date>")
 async def get_menus(schoolname, date):
     # Keep track of todo's. Does not persist if Python session is restarted.
-    _MENUS = json.load(open("tmenu.json"))
+    _MENUS = load_menu()
     _MENUS["menu_days"] = list(filter(lambda o: o["date"] == date, _MENUS["menu_days"]))
     return quart.Response(response=json.dumps(_MENUS), status=200)
-
-
-@app.get("/curdate")
-async def get_curdate():
-    resp = json.dumps({"date": date.today().strftime("%Y-%m-%d")})
-    return quart.Response(response=resp, status=200)
 
 
 @app.get("/logo.png")

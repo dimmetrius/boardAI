@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.1.1
 info:
   title: School Menu Plugin
   description: A plugin that allows the user analize School Menu using ChatGPT. If you do not know the the school's name, ask them first before making queries to the plugin. Otherwise, use the schoolname "Orion" You should apply date parameter in YYYY-MM-DD format. You will you getCurrentDate operation if you need current date 
@@ -6,17 +6,6 @@ info:
 servers:
   - url: http://localhost:5003
 paths:
-  /curdate:
-    get:
-      operationId: getCurrentDate
-      summary: Get current date
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/getCurrentDateResponse'
   /menu/{schoolname}/{date}:
     get:
       operationId: getMenu
@@ -44,13 +33,6 @@ paths:
 
 components:
   schemas:
-    getCurrentDateResponse:
-      type: object
-      properties:
-        date: 
-          type: string
-          required: true
-          description: Cuttent Date in format YYYY-MM-DD.
     getMenuResponse:
       type: object
       properties:
