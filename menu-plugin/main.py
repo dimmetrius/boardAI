@@ -2,18 +2,21 @@ import json
 from typing import Any
 import quart
 import quart_cors
+from quart import request
 from loadmenu import load_menu
 
 
 app = quart_cors.cors(quart.Quart(__name__), allow_origin="https://chat.openai.com")  # type: ignore
 
 
-@app.get("/menu/<string:schoolname>/<string:date>")
-async def get_menus(schoolname: str, date: str):
+@app.get("/menu")
+async def get_menus():
+    # schoolname = request.args.get("schoolname")
+    date = request.args.get("date") or ""
     # Keep track of todo's. Does not persist if Python session is restarted.
     _MENUS: dict[str, Any] = load_menu()
 
-    _MENUS["menu_days"] = list(filter(lambda o: o["date"] == date, _MENUS["menu_days"]))  # type: ignore
+    _MENUS["menu_days"] = list(filter(lambda o: True if date == "" else o["date"] == date, _MENUS["menu_days"]))  # type: ignore
     return quart.Response(response=json.dumps(_MENUS), status=200)
 
 

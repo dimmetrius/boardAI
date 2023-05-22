@@ -1,23 +1,28 @@
 openapi: 3.1.1
 info:
   title: School Menu Plugin
-  description: A plugin that allows the user analize School Menu using ChatGPT. If you do not know the the school's name, ask them first before making queries to the plugin. Otherwise, use the schoolname "Orion" You should apply date parameter in YYYY-MM-DD format. You will you getCurrentDate operation if you need current date 
+  description: A plugin that allows the user analize School Menu using ChatGPT. If you do not know the the school's name, ask them first before making queries to the plugin. Otherwise, use the schoolname "Orion" You should apply date query parameter in YYYY-MM-DD format. You will you getCurrentDate operation if you need current date 
   version: 'v1'
 servers:
   - url: http://localhost:5003
+tags:
+  - name: school-menu-endpoint
+    description: School Menu Endpoint. Query for menus.
 paths:
-  /menu/{schoolname}/{date}:
+  /menu:
     get:
+      tags:
+        - school-menu-endpoint
       operationId: getMenu
       summary: Get the menu
       parameters:
-      - in: path
+      - in: query
         name: schoolname
         schema:
             type: string
         required: true
         description: The name of the school.
-      - in: path
+      - in: query
         name: date
         schema:
             type: string

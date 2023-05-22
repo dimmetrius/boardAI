@@ -19,7 +19,7 @@ agent_chain = initialize_agent(
 )
 
 
-question = "What's for lunch tomorrow at Orion?"
+question = "What's for lunch tomorrow at Dima school?"
 transformed_question = (
     "Today is: " + date.today().strftime("%Y-%m-%d") + "\n" + question
 )
